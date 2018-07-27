@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
-import Toggle from "./Toggle";
-import Modal from "./Modal";
+import { Toggle, Modal } from "./Utils";
 import "./App.css";
 
 class App extends Component {

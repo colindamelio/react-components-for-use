@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 import Portal from "./Portal";
+import Icon from "./Icon";
 
 export default class Modal extends Component {
   render() {
@@ -10,7 +11,9 @@ export default class Modal extends Component {
         {isToggled && (
           <ModalWrapper>
             <ModalWindow>
-              <CloseButton onClick={toggle}>close</CloseButton>
+              <CloseButton onClick={toggle}>
+                <Icon name="close" />
+              </CloseButton>
               {children}
             </ModalWindow>
             <Overlay onClick={toggle} />
@@ -47,6 +50,10 @@ const CloseButton = styled.button`
   position: absolute;
   top: 0;
   right: 0;
+  background: none;
+  padding: 10px;
+  border: 0;
+  cursor: pointer;
 `;
 
 const Overlay = styled.div`
