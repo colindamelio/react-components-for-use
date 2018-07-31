@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import styled from "styled-components";
-import Portal from "./Portal";
+import { Portal, absolute } from "utils";
+import { Card } from "./Card";
 import Icon from "./Icon";
 
 export default class Modal extends Component {
@@ -10,12 +11,12 @@ export default class Modal extends Component {
       <Portal>
         {isToggled && (
           <ModalWrapper>
-            <ModalWindow>
+            <ModalCard>
               <CloseButton onClick={toggle}>
                 <Icon name="close" />
               </CloseButton>
               {children}
-            </ModalWindow>
+            </ModalCard>
             <Overlay onClick={toggle} />
           </ModalWrapper>
         )}
@@ -25,9 +26,7 @@ export default class Modal extends Component {
 }
 
 const ModalWrapper = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
+  ${absolute({})};
   width: 100%;
   height: 100%;
   display: flex;
@@ -35,33 +34,28 @@ const ModalWrapper = styled.div`
   align-items: center;
 `;
 
-const ModalWindow = styled.div`
+const ModalCard = Card.extend`
   position: relative;
   min-width: 400px;
-  background: white;
-  padding: 15px;
   text-align: center;
-  border-radius: 5px;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.4);
   z-index: 10;
 `;
 
 const CloseButton = styled.button`
-  position: absolute;
-  top: 0;
-  right: 0;
-  background: none;
+  ${absolute({
+    y: "top",
+    x: "right"
+  })};
   padding: 10px;
+  background: none;
   border: 0;
   cursor: pointer;
 `;
 
 const Overlay = styled.div`
-  position: absolute;
+  ${absolute({})};
   width: 100%;
   height: 100%;
-  top: 0;
-  left: 0;
   background: black;
   opacity: 0.6;
 `;
